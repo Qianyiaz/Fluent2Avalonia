@@ -1,0 +1,26 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:views="using:Fluent2Avalonia.Demo.Views"
+        xmlns:vm="using:Fluent2Avalonia.Demo.ViewModels"
+        xmlns:models="clr-namespace:Fluent2Avalonia.Icons.Models;assembly=Fluent2Avalonia.Icons"
+        x:Class="Fluent2Avalonia.Demo.Views.MainWindow"
+        x:DataType="vm:MainWindowViewModel"
+        TransparencyLevelHint="Mica,AcrylicBlur,None"
+        Background="Transparent"
+        Title="Fluent2Avalonia.Demo">
+    <NavigationView IsPageCacheEnabled="False"
+                    TargetPageType="{x:Type views:HomePage}"
+                    NavigationPageFactory="{Binding PageFactory}">
+        <NavigationView.MenuItems>
+            <NavigationViewItem Content="Home"
+                                Icon="{x:Static models:Symbols.Home}"
+                                TargetPageType="{x:Type views:HomePage}" />
+        </NavigationView.MenuItems>
+
+        <NavigationView.FooterMenuItems>
+            <NavigationViewItem Content="Settings"
+                                Icon="{x:Static models:Symbols.Settings}"
+                                TargetPageType="{x:Type views:SettingsPage}" />
+        </NavigationView.FooterMenuItems>
+    </NavigationView>
+</Window>

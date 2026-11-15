@@ -1,0 +1,145 @@
+﻿<ResourceDictionary xmlns="https://github.com/avaloniaui"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:models="clr-namespace:Fluent2Avalonia.Icons.Models;assembly=Fluent2Avalonia.Icons"
+                    xmlns:controls="clr-namespace:Fluent2Avalonia.Icons.Controls;assembly=Fluent2Avalonia.Icons">
+    <Design.PreviewWith>
+        <Border Padding="20">
+            <StackPanel Width="320" Spacing="20">
+                <NavigationViewItem Content="Home" Icon="{x:Static models:Symbols.Home}" IsChecked="True" />
+                <NavigationViewItem Content="Settings" Icon="{x:Static models:Symbols.Settings}" />
+                <NavigationViewItem IsEnabled="False" Icon="{x:Static models:Symbols.Settings}" Content="Settings" />
+            </StackPanel>
+        </Border>
+    </Design.PreviewWith>
+
+    <ResourceDictionary.ThemeDictionaries>
+        <ResourceDictionary x:Key="Default">
+            <StaticResource x:Key="NavigationViewItemForeground" ResourceKey="TextFillColorPrimaryBrush" />
+            <StaticResource x:Key="NavigationViewItemForegroundPointerOver" ResourceKey="TextFillColorPrimaryBrush" />
+            <StaticResource x:Key="NavigationViewItemForegroundPressed" ResourceKey="TextFillColorSecondaryBrush" />
+            <StaticResource x:Key="NavigationViewItemForegroundChecked" ResourceKey="TextFillColorPrimaryBrush" />
+            <StaticResource x:Key="NavigationViewItemForegroundDisabled" ResourceKey="TextFillColorDisabledBrush" />
+
+            <StaticResource x:Key="NavigationViewItemBackground" ResourceKey="SubtleFillColorTransparentBrush" />
+            <StaticResource x:Key="NavigationViewItemBackgroundPointerOver" ResourceKey="SubtleFillColorSecondaryBrush" />
+            <StaticResource x:Key="NavigationViewItemBackgroundPressed" ResourceKey="SubtleFillColorTertiaryBrush" />
+            <StaticResource x:Key="NavigationViewItemBackgroundChecked" ResourceKey="SubtleFillColorSecondaryBrush" />
+            <StaticResource x:Key="NavigationViewItemBackgroundDisabled" ResourceKey="SubtleFillColorTransparentBrush" />
+
+            <StaticResource x:Key="NavigationViewItemIndicatorBrush" ResourceKey="AccentFillColorDefaultBrush" />
+        </ResourceDictionary>
+
+        <ResourceDictionary x:Key="Dark">
+            <StaticResource x:Key="NavigationViewItemForeground" ResourceKey="TextFillColorPrimaryBrush" />
+            <StaticResource x:Key="NavigationViewItemForegroundPointerOver" ResourceKey="TextFillColorPrimaryBrush" />
+            <StaticResource x:Key="NavigationViewItemForegroundPressed" ResourceKey="TextFillColorSecondaryBrush" />
+            <StaticResource x:Key="NavigationViewItemForegroundChecked" ResourceKey="TextFillColorPrimaryBrush" />
+            <StaticResource x:Key="NavigationViewItemForegroundDisabled" ResourceKey="TextFillColorDisabledBrush" />
+
+            <StaticResource x:Key="NavigationViewItemBackground" ResourceKey="SubtleFillColorTransparentBrush" />
+            <StaticResource x:Key="NavigationViewItemBackgroundPointerOver" ResourceKey="SubtleFillColorSecondaryBrush" />
+            <StaticResource x:Key="NavigationViewItemBackgroundPressed" ResourceKey="SubtleFillColorTertiaryBrush" />
+            <StaticResource x:Key="NavigationViewItemBackgroundChecked" ResourceKey="SubtleFillColorSecondaryBrush" />
+            <StaticResource x:Key="NavigationViewItemBackgroundDisabled" ResourceKey="SubtleFillColorTransparentBrush" />
+
+            <StaticResource x:Key="NavigationViewItemIndicatorBrush" ResourceKey="AccentFillColorDefaultBrush" />
+        </ResourceDictionary>
+    </ResourceDictionary.ThemeDictionaries>
+
+    <x:Double x:Key="NavigationViewItemHeight">36</x:Double>
+    <Thickness x:Key="NavigationViewItemMargin">4 2</Thickness>
+    <Thickness x:Key="NavigationViewItemPadding">0</Thickness>
+    <x:String x:Key="NavigationViewItemGroupName">Nav</x:String>
+
+    <x:Double x:Key="NavigationViewItemIconColumnWidth">40</x:Double>
+
+    <x:Double x:Key="NavigationViewItemIndicatorWidth">3</x:Double>
+    <x:Double x:Key="NavigationViewItemIndicatorHeight">16</x:Double>
+    <CornerRadius x:Key="NavigationViewItemIndicatorCornerRadius">1.5</CornerRadius>
+
+    <ControlTheme x:Key="{x:Type NavigationViewItem}" TargetType="NavigationViewItem">
+        <Setter Property="Height" Value="{StaticResource NavigationViewItemHeight}" />
+        <Setter Property="GroupName" Value="{StaticResource NavigationViewItemGroupName}" />
+        <Setter Property="Padding" Value="{StaticResource NavigationViewItemPadding}" />
+        <Setter Property="Margin" Value="{StaticResource NavigationViewItemMargin}" />
+        <Setter Property="HorizontalAlignment" Value="Stretch" />
+        <Setter Property="HorizontalContentAlignment" Value="Left" />
+        <Setter Property="VerticalContentAlignment" Value="Center" />
+        <Setter Property="Background" Value="{DynamicResource NavigationViewItemBackground}" />
+        <Setter Property="CornerRadius" Value="{StaticResource ControlCornerRadius}" />
+
+        <Setter Property="Template">
+            <ControlTemplate>
+                <Border Name="PART_Root"
+                        Background="{TemplateBinding Background}"
+                        CornerRadius="{TemplateBinding CornerRadius}">
+                    <Panel>
+                        <Border Name="PART_Indicator"
+                                Opacity="0"
+                                IsVisible="False"
+                                Width="{StaticResource NavigationViewItemIndicatorWidth}"
+                                Height="{StaticResource NavigationViewItemIndicatorHeight}"
+                                HorizontalAlignment="Left"
+                                VerticalAlignment="Center"
+                                CornerRadius="{StaticResource NavigationViewItemIndicatorCornerRadius}"
+                                RenderTransform="scaleY(0)"
+                                Background="{DynamicResource NavigationViewItemIndicatorBrush}">
+                            <Border.Transitions>
+                                <Transitions>
+                                    <TransformOperationsTransition
+                                        Property="RenderTransform"
+                                        Duration="{StaticResource ControlFastAnimationDuration}"
+                                        Easing="{StaticResource ControlFastOutSlowInKeySpline}" />
+
+                                    <DoubleTransition
+                                        Property="Opacity"
+                                        Duration="{StaticResource ControlFastAnimationDuration}"
+                                        Easing="{StaticResource ControlFastOutSlowInKeySpline}" />
+                                </Transitions>
+                            </Border.Transitions>
+                        </Border>
+
+                        <controls:SymbolIconText
+                            Spacing="5"
+                            IconSlotWidth="{StaticResource NavigationViewItemIconColumnWidth}"
+                            Symbol="{TemplateBinding Icon}"
+                            Text="{TemplateBinding Content}"
+                            Foreground="{TemplateBinding Foreground}"
+                            HorizontalAlignment="Stretch"
+                            VerticalAlignment="Center" />
+                    </Panel>
+                </Border>
+            </ControlTemplate>
+        </Setter>
+
+        <Style Selector="^:pointerover">
+            <Setter Property="Background" Value="{DynamicResource NavigationViewItemBackgroundPointerOver}" />
+        </Style>
+
+        <Style Selector="^:pressed">
+            <Setter Property="Background" Value="{DynamicResource NavigationViewItemBackgroundPressed}" />
+            <Setter Property="Foreground" Value="{DynamicResource NavigationViewItemForegroundPressed}" />
+        </Style>
+
+        <Style Selector="^:checked">
+            <Setter Property="Background" Value="{DynamicResource NavigationViewItemBackgroundChecked}" />
+            <Setter Property="Foreground" Value="{DynamicResource NavigationViewItemForegroundChecked}" />
+
+            <Style Selector="^ /template/ Border#PART_Indicator">
+                <Setter Property="Opacity" Value="1" />
+                <Setter Property="IsVisible" Value="True" />
+                <Setter Property="RenderTransform" Value="scaleY(1)" />
+            </Style>
+
+            <Style Selector="^:pressed">
+                <Setter Property="Background" Value="{DynamicResource NavigationViewItemBackgroundPressed}" />
+                <Setter Property="Foreground" Value="{DynamicResource NavigationViewItemForegroundPressed}" />
+            </Style>
+        </Style>
+
+        <Style Selector="^:disabled">
+            <Setter Property="Background" Value="{DynamicResource NavigationViewItemBackgroundDisabled}" />
+            <Setter Property="Foreground" Value="{DynamicResource NavigationViewItemForegroundDisabled}" />
+        </Style>
+    </ControlTheme>
+</ResourceDictionary>

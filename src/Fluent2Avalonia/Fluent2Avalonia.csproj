@@ -1,0 +1,14 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+    <PropertyGroup>
+        <TargetFramework>net10.0</TargetFramework>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="Avalonia"/>
+        <PackageReference Include="Avalonia.Themes.Fluent2"/>
+    </ItemGroup>
+
+    <ItemGroup>
+        <ProjectReference Include="..\Fluent2Avalonia.Icons\Fluent2Avalonia.Icons.csproj"/>
+    </ItemGroup>
+</Project>

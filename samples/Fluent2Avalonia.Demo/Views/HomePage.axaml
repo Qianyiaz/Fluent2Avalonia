@@ -1,0 +1,16 @@
+﻿<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="Fluent2Avalonia.Demo.Views.HomePage">
+    <StackPanel HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                Spacing="12">
+        <TextBlock Text="Welcome to use Fluent2Avalonia App!"
+                   HorizontalAlignment="Center"
+                   FontSize="24" />
+
+        <Button Classes="accent"
+                Content="Click Me!"
+                Padding="35 5"
+                HorizontalAlignment="Center" />
+    </StackPanel>
+</UserControl>

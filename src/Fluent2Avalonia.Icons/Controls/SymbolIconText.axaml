@@ -1,0 +1,94 @@
+﻿<ResourceDictionary xmlns="https://github.com/avaloniaui"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:controls="clr-namespace:Fluent2Avalonia.Icons.Controls"
+                    xmlns:models="clr-namespace:Fluent2Avalonia.Icons.Models">
+    <Design.PreviewWith>
+        <StackPanel Width="480" Margin="10" Spacing="10">
+            <controls:SymbolIconText
+                Symbol="{x:Static models:Symbols.Save}"
+                Text="Default: icon on left" />
+
+            <controls:SymbolIconText
+                Symbol="{x:Static models:Symbols.Refresh}"
+                IconPlacement="Right"
+                Text="IconPlacement=Right" />
+
+            <StackPanel Orientation="Horizontal" Spacing="20">
+                <controls:SymbolIconText
+                    Symbol="{x:Static models:Symbols.Settings}"
+                    IconPlacement="Top"
+                    Spacing="4"
+                    Text="Top" />
+                <controls:SymbolIconText
+                    Symbol="{x:Static models:Symbols.Download}"
+                    IconPlacement="Bottom"
+                    Spacing="4"
+                    Text="Bottom" />
+            </StackPanel>
+
+            <controls:SymbolIconText
+                Symbol="{x:Static models:Symbols.Favorite}"
+                IconForeground="OrangeRed"
+                IsTextSelectable="True"
+                Text="Icon colored independently + selectable text" />
+
+            <Button HorizontalAlignment="Left"
+                    Content="{controls:SymbolIconTextExt Symbol={x:Static models:Symbols.Add}, Text='via SymbolIconTextExt', Spacing=6}" />
+
+            <Button HorizontalAlignment="Left"
+                    Content="{controls:SymbolIconTextExt Symbol={x:Static models:Symbols.Delete},Text='IconPlacement=Top',IconPlacement=Top,IconForeground=OrangeRed,Spacing=4}" />
+        </StackPanel>
+    </Design.PreviewWith>
+
+    <ControlTheme x:Key="{x:Type controls:SymbolIconText}"
+                  TargetType="controls:SymbolIconText">
+        <Setter Property="Template">
+            <ControlTemplate>
+                <Border Padding="{TemplateBinding Padding}"
+                        Background="{TemplateBinding Background}"
+                        BackgroundSizing="{TemplateBinding BackgroundSizing}"
+                        BorderBrush="{TemplateBinding BorderBrush}"
+                        BorderThickness="{TemplateBinding BorderThickness}"
+                        CornerRadius="{TemplateBinding CornerRadius}">
+                    <Grid HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                          VerticalAlignment="{TemplateBinding VerticalContentAlignment}">
+                        <DockPanel HorizontalSpacing="{TemplateBinding Spacing}"
+                                   VerticalSpacing="{TemplateBinding Spacing}"
+                                   LastChildFill="False">
+                            <controls:SymbolIcon Name="PART_Icon"
+                                                 Width="{TemplateBinding IconSlotWidth}"
+                                                 Height="{TemplateBinding IconSlotWidth}"
+                                                 DockPanel.Dock="{TemplateBinding IconPlacement}"
+                                                 Symbol="{TemplateBinding Symbol}"
+                                                 IconSize="{TemplateBinding IconSize}"
+                                                 HorizontalAlignment="Center"
+                                                 VerticalAlignment="Center" />
+                            <TextBlock Name="PART_TextBlock"
+                                       Text="{TemplateBinding Text}"
+                                       TextAlignment="{TemplateBinding TextAlignment}"
+                                       FontSize="{TemplateBinding FontSize}"
+                                       HorizontalAlignment="Center"
+                                       VerticalAlignment="Center" />
+                            <SelectableTextBlock Name="PART_SelectableTextBlock"
+                                                 Text="{TemplateBinding Text}"
+                                                 TextAlignment="{TemplateBinding TextAlignment}"
+                                                 FontSize="{TemplateBinding FontSize}"
+                                                 IsVisible="False"
+                                                 HorizontalAlignment="Center"
+                                                 VerticalAlignment="Center" />
+                        </DockPanel>
+                    </Grid>
+                </Border>
+            </ControlTemplate>
+        </Setter>
+
+        <Style Selector="^[IsTextSelectable=True]">
+            <Style Selector="^ /template/ TextBlock">
+                <Setter Property="IsVisible" Value="False" />
+            </Style>
+            <Style Selector="^ /template/ SelectableTextBlock">
+                <Setter Property="IsVisible" Value="True" />
+            </Style>
+        </Style>
+    </ControlTheme>
+</ResourceDictionary>

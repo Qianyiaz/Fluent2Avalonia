@@ -1,0 +1,12 @@
+<Project>
+    <PropertyGroup>
+        <ManagePackageVersionsCentrally>true</ManagePackageVersionsCentrally>
+    </PropertyGroup>
+    <ItemGroup>
+        <PackageVersion Include="Avalonia" Version="12.2.999-cibuild0101296-alpha"/>
+        <PackageVersion Include="Avalonia.Desktop" Version="12.2.999-cibuild0101296-alpha"/>
+        <PackageVersion Include="Avalonia.Themes.Fluent2" Version="12.2.999-cibuild0101296-alpha"/>
+        <PackageVersion Include="AvaloniaUI.DiagnosticsSupport" Version="2.2.3"/>
+        <PackageVersion Include="Jab" Version="0.12.0"/>
+    </ItemGroup>
+</Project>

@@ -1,0 +1,93 @@
+﻿<ResourceDictionary xmlns="https://github.com/avaloniaui"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:models="clr-namespace:Fluent2Avalonia.Icons.Models;assembly=Fluent2Avalonia.Icons">
+    <Design.PreviewWith>
+        <Border Padding="20">
+            <NavigationView>
+                <StackPanel>
+                    <TextBlock Text="Content" FontSize="20" FontWeight="SemiBold" />
+                </StackPanel>
+                <NavigationView.MenuItems>
+                    <NavigationViewItem Content="Home"
+                                        Icon="{x:Static models:Symbols.Home}" />
+                    <NavigationViewItem Content="Profile"
+                                        Icon="&#xE77B;" />
+                    <NavigationViewItem Content="Messages"
+                                        Icon="&#xE8BD;" />
+                </NavigationView.MenuItems>
+                <NavigationView.FooterMenuItems>
+                    <NavigationViewItem Content="Settings"
+                                        Icon="{x:Static models:Symbols.Settings}" />
+                </NavigationView.FooterMenuItems>
+            </NavigationView>
+        </Border>
+    </Design.PreviewWith>
+
+    <ResourceDictionary.ThemeDictionaries>
+        <ResourceDictionary x:Key="Default">
+            <StaticResource x:Key="NavigationViewPaneBackground" ResourceKey="SolidBackgroundFillColorTransparentBrush" />
+            <StaticResource x:Key="NavigationViewContentBackground" ResourceKey="LayerFillColorDefaultBrush" />
+            <StaticResource x:Key="NavigationViewContentBorderBrush" ResourceKey="CardStrokeColorDefaultBrush" />
+        </ResourceDictionary>
+
+        <ResourceDictionary x:Key="Dark">
+            <StaticResource x:Key="NavigationViewPaneBackground" ResourceKey="SolidBackgroundFillColorTransparentBrush" />
+            <StaticResource x:Key="NavigationViewContentBackground" ResourceKey="LayerFillColorDefaultBrush" />
+            <StaticResource x:Key="NavigationViewContentBorderBrush" ResourceKey="CardStrokeColorDefaultBrush" />
+        </ResourceDictionary>
+    </ResourceDictionary.ThemeDictionaries>
+
+    <ControlTheme x:Key="{x:Type NavigationView}" TargetType="NavigationView">
+        <Setter Property="Template">
+            <ControlTemplate>
+                <SplitView Name="PART_SplitView"
+                           DisplayMode="CompactInline"
+                           PaneBackground="{DynamicResource NavigationViewPaneBackground}"
+                           PanePlacement="Left">
+                    <SplitView.Pane>
+                        <Grid RowDefinitions="Auto,*,Auto" Margin="0 8 0 4">
+                            <Grid RowDefinitions="Auto,Auto">
+                                <Button Name="PART_BackButton"
+                                        Classes="navigation back"
+                                        ToolTip.Tip="Back" />
+
+                                <Button Grid.Row="1"
+                                        ToolTip.Tip="Open Navigation"
+                                        Name="PART_TogglePaneButton"
+                                        Classes="navigation toggle" />
+                            </Grid>
+
+                            <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto">
+                                <ItemsControl ItemsSource="{TemplateBinding MenuItems}" />
+                            </ScrollViewer>
+
+                            <ItemsControl Grid.Row="2"
+                                          ItemsSource="{TemplateBinding FooterMenuItems}" />
+                        </Grid>
+                    </SplitView.Pane>
+
+                    <Border Background="{DynamicResource NavigationViewContentBackground}"
+                            BorderBrush="{DynamicResource NavigationViewContentBorderBrush}"
+                            BorderThickness="1 0 0 0"
+                            CornerRadius="8 0 0 0">
+                        <TransitioningContentControl Content="{TemplateBinding Content}"
+                                                     ContentTemplate="{TemplateBinding ContentTemplate}">
+                            <TransitioningContentControl.PageTransition>
+                                <CompositePageTransition>
+                                    <PageSlide Duration="{StaticResource ControlNormalAnimationDuration}"
+                                               Orientation="Vertical"
+                                               SlideInEasing="{StaticResource ControlFastOutSlowInKeySpline}"
+                                               SlideOutEasing="{StaticResource ControlFastOutSlowInKeySpline}" />
+                                    <CrossFade Duration="{StaticResource ControlFastAnimationDuration}"
+                                               FadeInEasing="{StaticResource ControlFastOutSlowInKeySpline}"
+                                               FadeOutEasing="{StaticResource ControlFastOutSlowInKeySpline}" />
+                                </CompositePageTransition>
+                            </TransitioningContentControl.PageTransition>
+                        </TransitioningContentControl>
+                    </Border>
+                </SplitView>
+            </ControlTemplate>
+        </Setter>
+        <Setter Property="IsBackEnabled" Value="{Binding $self.CanBack,Mode=TwoWay}" />
+    </ControlTheme>
+</ResourceDictionary>

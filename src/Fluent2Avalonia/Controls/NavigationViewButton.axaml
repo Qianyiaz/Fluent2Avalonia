@@ -1,0 +1,68 @@
+﻿<Styles xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:controls="clr-namespace:Fluent2Avalonia.Icons.Controls;assembly=Fluent2Avalonia.Icons">
+    <Design.PreviewWith>
+        <Border Padding="20">
+            <StackPanel Spacing="20">
+                <Button Classes="navigation back"
+                        ToolTip.Tip="Back" />
+                <Button Classes="navigation toggle"
+                        ToolTip.Tip="Menu" />
+
+                <Button Classes="navigation back"
+                        IsEnabled="False"
+                        ToolTip.Tip="Back" />
+                <Button Classes="navigation toggle"
+                        IsEnabled="False"
+                        ToolTip.Tip="Menu" />
+            </StackPanel>
+        </Border>
+    </Design.PreviewWith>
+
+    <Style Selector="Button.navigation">
+        <Setter Property="Height" Value="36" />
+        <Setter Property="Width" Value="40" />
+        <Setter Property="Margin" Value="4,2" />
+        <Setter Property="Padding" Value="4,2" />
+
+        <Setter Property="Template">
+            <ControlTemplate>
+                <ContentPresenter Name="PART_ContentPresenter"
+                                  Background="Transparent"
+                                  CornerRadius="{StaticResource ControlCornerRadius}"
+                                  Padding="{TemplateBinding Padding}"
+                                  HorizontalContentAlignment="Center"
+                                  VerticalContentAlignment="Center">
+                    <controls:SymbolIcon Name="PART_SymbolIcon">
+                        <controls:SymbolIcon.Transitions>
+                            <Transitions>
+                                <TransformOperationsTransition
+                                    Property="RenderTransform"
+                                    Duration="{StaticResource ControlFasterAnimationDuration}" />
+                            </Transitions>
+                        </controls:SymbolIcon.Transitions>
+                    </controls:SymbolIcon>
+                </ContentPresenter>
+            </ControlTemplate>
+        </Setter>
+
+        <Style Selector="^:disabled /template/ ContentPresenter#PART_ContentPresenter">
+            <Setter Property="Background" Value="Transparent" />
+        </Style>
+
+        <Style Selector="^.back controls|SymbolIcon#PART_SymbolIcon">
+            <Setter Property="Symbol" Value="&#xE72B;" />
+        </Style>
+        <Style Selector="^.back:pressed controls|SymbolIcon#PART_SymbolIcon">
+            <Setter Property="RenderTransformOrigin" Value="100%,50%" />
+            <Setter Property="RenderTransform" Value="scale(0.75, 0.95)" />
+        </Style>
+
+        <Style Selector="^.toggle controls|SymbolIcon#PART_SymbolIcon">
+            <Setter Property="Symbol" Value="&#xE700;" />
+        </Style>
+        <Style Selector="^.toggle:pressed controls|SymbolIcon#PART_SymbolIcon">
+            <Setter Property="RenderTransform" Value="scaleX(0.5)" />
+        </Style>
+    </Style>
+</Styles>
